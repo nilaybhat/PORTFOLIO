@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nilay Bhattacharya Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Coiny&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Prevent Flash of Unstyled Content (FOUC) */
+    html {
+      background-color: #000;
+    }
+
+    body {
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      overflow: hidden;
+    }
+
+    body.loaded {
+      opacity: 1;
+    }
+  </style>
+  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+</head>
+
+<body>
+
+  <!-- ============ LOCK SCREEN — macOS Sonoma ============ -->
+  <div class="lockscreen" id="lockscreen">
+    <div class="ls-bg"></div>
+
+    <div class="ls-status-bar">
+      <div class="ls-status-right">
+        <span>U.S.</span>
+        <svg class="ls-wifi" viewBox="0 0 16 12" width="16" height="12">
+          <path fill="currentColor" d="M8 10.4a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6z" />
+          <path fill="currentColor"
+            d="M8 5.4c1.65 0 3.15.62 4.3 1.64a.7.7 0 0 1 .04 1.02l-.78.8a.62.62 0 0 1-.86.02A4.9 4.9 0 0 0 8 7.5c-1.06 0-2.04.36-2.7.94a.62.62 0 0 1-.86-.02l-.78-.8a.7.7 0 0 1 .04-1.02A6.6 6.6 0 0 1 8 5.4z" />
+          <path fill="currentColor"
+            d="M8 1.9c2.55 0 4.86.95 6.6 2.53a.7.7 0 0 1 .04 1.02l-.74.76a.6.6 0 0 1-.83.03A8.1 8.1 0 0 0 8 4.3a8.1 8.1 0 0 0-5.07 1.94.6.6 0 0 1-.83-.03l-.74-.76a.7.7 0 0 1 .04-1.02A9.9 9.9 0 0 1 8 1.9z" />
+        </svg>
+        <span>91%</span>
+        <svg class="ls-battery" width="24" height="12" viewBox="0 0 24 12" fill="none">
+          <rect x="0.75" y="0.75" width="20" height="10.5" rx="2.5" stroke="currentColor" stroke-width="1.1" />
+          <rect x="2.25" y="2.25" width="17" height="7.5" rx="1.4" fill="currentColor" />
+          <rect x="21.5" y="4" width="1.8" height="4" rx="0.9" fill="currentColor" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Day + Date -->
+    <div class="ls-top">
+      <div class="ls-day" id="lsDay">Thu Jul 17</div>
+    </div>
+
+    <!-- Giant clock -->
+    <div class="ls-clock-wrap">
+      <div class="ls-clock" id="lsClock">6:56</div>
+    </div>
+    <div class="ls-name">Nilay's Portfolio</div>
+
+    <!-- iOS-style lock screen quick actions (mobile only) -->
+    <div class="ls-quick-actions">
+      <button class="ls-quick-btn" type="button" aria-label="Flashlight" onclick="event.stopPropagation()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 2h6l1.5 3.5-1.5 1.5H9L7.5 5.5 9 2z" />
+          <line x1="7.5" y1="7" x2="16.5" y2="7" />
+          <rect x="8.5" y="7" width="7" height="14" rx="1.5" />
+        </svg>
+      </button>
+      <button class="ls-quick-btn" type="button" aria-label="Camera" onclick="event.stopPropagation()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+          <circle cx="12" cy="13" r="4" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Users -->
+
+    <!-- Swipe / click hint -->
+    <div class="ls-swipe-hint">
+      <div class="ls-swipe-chevron">
+        <svg width="22" height="13" viewBox="0 0 22 13" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 1l10 10L21 1" />
+        </svg>
+      </div>
+      <div class="ls-swipe-label"
+        style="font-size:11.5px; color: var(--text-muted); letter-spacing:1px; text-transform:uppercase; font-weight:500;">
+        Click anywhere to unlock</div>
+    </div>
+  </div>
+
+  <!-- ============ DESKTOP ============ -->
+  <div class="desktop-wrapper">
+    <div class="desktop">
+
+      <!-- Profile Widget -->
+      <div class="profile-widget-container" id="home-view">
+        <div class="widget-row">
+          <div class="profile-widget">
+            <img src="assets/images/logo.jpeg" alt="Profile">
+          </div>
+
+          <!-- Mobile App Grid (Only visible on mobile) -->
+          <div class="mobile-apps-grid hide-on-desktop">
+            <div class="mobile-app-icon" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=nilaybhattacharya388@gmail.com', '_blank')">
+              <div class="mobile-app-squircle">
+                <img src="assets/icons/gmail.png" style="width: 100%; height: 100%; object-fit: contain; transform: scale(1.5);">
+              </div>
+              <span>Mail</span>
+            </div>
+            
+            <div class="mobile-app-icon" onclick="showPage('projects')">
+              <div class="mobile-app-squircle mobile-app-squircle--glass">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                  <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                  <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                  <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                </svg>
+              </div>
+              <span>Projects</span>
+            </div>
+
+            <div class="mobile-app-icon" onclick="showPage('resume')">
+              <div class="mobile-app-squircle mobile-app-squircle--glass">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <span>Resume</span>
+            </div>
+
+            <div class="mobile-app-icon" onclick="showPage('contact')">
+              <div class="mobile-app-squircle mobile-app-squircle--glass">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <span>Contact</span>
+            </div>
+          </div>
+
+          <!-- Services Widget -->
+          <div class="services-widget">
+            <h2>What I'm doing</h2>
+
+            <div class="service-item">
+              <div class="service-icon"><svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <line x1="3" y1="9" x2="21" y2="9" />
+                  <line x1="9" y1="21" x2="9" y2="9" />
+                </svg></div>
+              <div class="service-text">
+                <h4>Web Design</h4>
+                <p>The most modern and high-quality design made at a professional level.</p>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <div class="service-icon"><svg viewBox="0 0 24 24">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg></div>
+              <div class="service-text">
+                <h4>Web Development</h4>
+                <p>High-quality development of sites at the professional level.</p>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <div class="service-icon"><svg viewBox="0 0 24 24">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg></div>
+              <div class="service-text">
+                <h4>Full Stack Development</h4>
+                <p>MERN stack applications with secure authentication and scalable architecture.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- About Widget -->
+        <div class="about-widget" onclick="showPage('about')">
+          <h2>About me</h2>
+          <p>Hi, I'm Nilay, a Full Stack Developer specializing in the MERN Stack. I build secure, scalable web
+            applications — from authentication systems to database-driven platforms — using React.js, Next.js, Node.js,
+            and Express.js.</p>
+          <p>Currently pursuing my BCA at Brainware University, I focus on writing clean, maintainable code that
+            delivers fast, user-friendly, and visually engaging experiences.</p>
+        </div>
+
+        <!-- Music Widget -->
+        <div class="music-player-widget" id="musicPlayerWidget">
+          <audio id="bgMusic" src="assets/music/RED - Seedhe Maut.mp3" loop></audio>
+          <div class="music-vinyl-container">
+            <div class="vinyl-record">
+              <div class="vinyl-label"></div>
+              <div class="vinyl-hole"></div>
+            </div>
+            <div class="tonearm">
+              <div class="tonearm-pivot"></div>
+              <div class="tonearm-arm"></div>
+              <div class="tonearm-head"></div>
+            </div>
+          </div>
+          <div class="music-info">
+            <div class="music-title">RED</div>
+            <div class="music-artist">Seedhe Maut</div>
+            <div class="music-controls">
+              <!-- Previous -->
+              <svg class="control-icon" viewBox="0 0 24 24">
+                <path d="M19 20L9 12l10-8v16zM5 19h2V5H5v14z" />
+              </svg>
+              <!-- Play -->
+              <svg class="control-icon play-icon" id="playPauseBtn" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              <!-- Next -->
+              <svg class="control-icon" viewBox="0 0 24 24">
+                <path d="M5 4l10 8-10 8V4zm14 1v14h-2V5h2z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PAGES -->
+      <div class="page-content" id="about-page">
+        <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 30px;">About Me</h2>
+
+        <div
+          style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 20px;">
+          <p style="font-size: 16px; line-height: 1.8; color: var(--text-main); margin: 0;">Hi, I'm
+            <strong>Nilay</strong>, a Full Stack Developer specializing in the MERN Stack (MongoDB, Express.js,
+            React.js, Node.js) with a strong focus on building scalable, secure, and user-focused web applications.
+          </p>
+
+          <p style="font-size: 16px; line-height: 1.8; color: var(--text-main); margin: 0;">I'm experienced in
+            developing authentication systems and database-driven applications, and I'm currently pursuing a BCA degree
+            at Brainware University. From designing intuitive interfaces with React.js and Next.js to building robust
+            backends with Node.js and Express.js, I enjoy turning ideas into functional products that deliver real
+            value.</p>
+
+          <div>
+            <h3 style="font-size: 18px; font-weight: 600; color: #0a84ff; margin-bottom: 12px; margin-top: 10px;">My
+              expertise includes:</h3>
+            <ul
+              style="margin: 0; padding-left: 20px; font-size: 16px; color: var(--text-main); line-height: 1.8; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px;">
+              <li>MERN Stack Web Development</li>
+              <li>Authentication Systems (JWT)</li>
+              <li>REST API Development</li>
+              <li>Database Design & Management</li>
+              <li>Role-Based Access Control</li>
+              <li>Real-Time Applications (Socket.IO)</li>
+              <li>Responsive UI with Tailwind CSS</li>
+              <li>CI/CD & Cloud Deployment</li>
+            </ul>
+          </div>
+
+          <p style="font-size: 16px; line-height: 1.8; color: var(--text-main); margin: 0;">I focus on writing clean,
+            maintainable code and building applications that are fast, secure, and scalable. Whether it's a university
+            portal, a URL shortener, or a custom business solution, I strive to deliver products that combine
+            performance with great user experience.</p>
+
+          <p style="font-size: 16px; line-height: 1.8; color: var(--text-main); margin: 0;">When I'm not coding, I enjoy
+            exploring new technologies, improving my development skills, and working on innovative digital projects.</p>
+
+          <div style="margin-top: 10px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <div style="font-weight: 600; font-size: 16px; margin-bottom: 12px; color: #bf5af2;">Tech Stack</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">JavaScript</span>
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">React.js</span>
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">Next.js</span>
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">Node.js</span>
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">Express.js</span>
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">MongoDB</span>
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">PostgreSQL</span>
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">Tailwind
+                CSS</span>
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">GSAP</span>
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">TypeScript</span>
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">Git
+                & GitHub</span>
+              <span
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 14px;">Vercel</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-content" id="projects-page">
+        <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 30px;">Projects</h2>
+
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Project 0 -->
+          <div
+            style="background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 24px; border-radius: 16px; transition: transform 0.2s, background 0.2s;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+              <div>
+                <h3 style="font-size: 20px; font-weight: 600; margin: 0 0 4px 0; color: #ff9f0a;">macOS Web Environment
+                  (This Portfolio!)</h3>
+                <div style="font-size: 15px; font-weight: 500; color: var(--text-muted);">Interactive Multi-Window OS
+                  Replica</div>
+              </div>
+              <div
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 13px; font-weight: 500;">
+                Present</div>
+            </div>
+            <p style="font-size: 16px; line-height: 1.7; color: var(--text-main); margin: 0;">Architected a fully
+              functional, interactive macOS replica directly in the browser to serve as a highly engaging portfolio.
+              Engineered a custom Multi-Window Manager using vanilla JavaScript capable of rendering independent,
+              draggable, and dynamically layered web apps and games. Implemented CSS variables for real-time Light/Dark
+              theme switching, native background iframe preservation for uninterrupted media, and sophisticated DOM
+              manipulation to replicate Apple's authentic UI physics and glassmorphism styling.</p>
+          </div>
+
+                    <!-- Project 1 -->
+          <div
+            style="background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 24px; border-radius: 16px; transition: transform 0.2s, background 0.2s;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+              <div>
+                <h3 style="font-size: 20px; font-weight: 600; margin: 0 0 4px 0; color: #0a84ff;"><a
+                    href="https://bwu-web.vercel.app" target="_blank"
+                    style="color: inherit; text-decoration: none;">Brainware University Student Portal</a></h3>
+                <div style="font-size: 15px; font-weight: 500; color: var(--text-muted);">University Management Portal
+                </div>
+              </div>
+              <div
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 13px; font-weight: 500;">
+                MERN Stack</div>
+            </div>
+            <p style="font-size: 16px; line-height: 1.7; color: var(--text-main); margin: 0;">Developed a university
+              management portal with JWT and role-based access control (RBAC) for attendance tracking, grade management,
+              and announcements. Built with MongoDB, Next.js, Tailwind CSS, GSAP, and Express.js.</p>
+          </div>
+
+          <!-- Project 2 -->
+          <div
+            style="background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 24px; border-radius: 16px; transition: transform 0.2s, background 0.2s;">
+            <div
+              style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+              <div>
+                <h3 style="font-size: 20px; font-weight: 600; margin: 0 0 4px 0; color: #bf5af2;"><a
+                    href="https://github.com/nilaybhat/urlshortner" target="_blank"
+                    style="color: inherit; text-decoration: none;">Tapwire - URL Shortener</a></h3>
+                <div style="font-size: 15px; font-weight: 500; color: var(--text-muted);">Production-Ready URL
+                  Shortening Platform</div>
+              </div>
+              <div
+                style="padding: 6px 12px; background: var(--glass-bg-light); border-radius: 20px; font-size: 13px; font-weight: 500;">
+                Open Source</div>
+            </div>
+            <p style="font-size: 16px; line-height: 1.7; color: var(--text-main); margin: 0;">Built a production-ready
+              URL shortening platform with REST APIs, secure link generation, click tracking, link expiration, rate
+              limiting, SSRF protection, and caching. Used Next.js, React, TypeScript, Tailwind CSS, PostgreSQL, and
+              SQLite.</p>
+          </div>
+        </div>
+      </div>
+      <div class="page-content" id="skills-page">
+        <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 30px;">My Skills</h2>
+
+        <div style="display: flex; gap: 50px; flex-wrap: wrap;">
+          <!-- Core Skills (Progress Bars) -->
+          <div style="flex: 1.5; min-width: 300px;">
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: var(--text-main);">Core Expertise
+            </h3>
+
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <!-- Skill 1 -->
+              <div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                  <span style="font-weight: 500; font-size: 15px;">JavaScript</span>
+                  <span style="color: var(--text-muted); font-size: 14px;">90%</span>
+                </div>
+                <div style="height: 8px; background: var(--glass-bg-light); border-radius: 4px; overflow: hidden;">
+                  <div
+                    style="width: 90%; height: 100%; background: linear-gradient(90deg, #0a84ff, #00d2ff); border-radius: 4px;">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Skill 2 -->
+              <div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                  <span style="font-weight: 500; font-size: 15px;">React.js & Next.js</span>
+                  <span style="color: var(--text-muted); font-size: 14px;">85%</span>
+                </div>
+                <div style="height: 8px; background: var(--glass-bg-light); border-radius: 4px; overflow: hidden;">
+                  <div
+                    style="width: 85%; height: 100%; background: linear-gradient(90deg, #ff375f, #ff7e5f); border-radius: 4px;">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Skill 3 -->
+              <div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                  <span style="font-weight: 500; font-size: 15px;">Node.js & Express.js</span>
+                  <span style="color: var(--text-muted); font-size: 14px;">85%</span>
+                </div>
+                <div style="height: 8px; background: var(--glass-bg-light); border-radius: 4px; overflow: hidden;">
+                  <div
+                    style="width: 85%; height: 100%; background: linear-gradient(90deg, #30d158, #34e89e); border-radius: 4px;">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Skill 4 -->
+              <div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                  <span style="font-weight: 500; font-size: 15px;">Databases (MongoDB, PostgreSQL, SQL)</span>
+                  <span style="color: var(--text-muted); font-size: 14px;">80%</span>
+                </div>
+                <div style="height: 8px; background: var(--glass-bg-light); border-radius: 4px; overflow: hidden;">
+                  <div
+                    style="width: 80%; height: 100%; background: linear-gradient(90deg, #bf5af2, #e0c3fc); border-radius: 4px;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other Skills (Tags) -->
+          <div style="flex: 1; min-width: 250px;">
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: var(--text-main);">Technologies &
+              Tools</h3>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">TypeScript</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">Tailwind
+                CSS</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">GSAP</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">REST
+                APIs</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">Socket.IO</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">JWT
+                Authentication</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">Python</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">Java</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">PHP</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">SQLite</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">Git
+                & GitHub</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">CI/CD</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">Vercel</span>
+              <span
+                style="padding: 10px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; font-size: 14px; font-weight: 500; transition: background 0.2s; cursor: default;">Vite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-content" id="resume-page">
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 20px;">
+          <h2 style="font-size: 32px; font-weight: 700; margin: 0;">Resume</h2>
+          <a href="javascript:void(0)"
+            onclick="forceDownload('assets/docs/Nilay_Bhattacharya_Resume.docx', 'Nilay_Bhattacharya_Resume.docx')"
+            style="padding: 12px 24px; background: #0a84ff; color: var(--text-main); text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Resume
+          </a>
+        </div>
+
+        <!-- Resume Content -->
+        <div
+          style="display: flex; flex-direction: column; gap: 30px; padding: 30px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px;">
+
+          <!-- Header -->
+          <div style="text-align: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px;">
+            <h1 style="font-size: 36px; margin: 0 0 10px 0; font-weight: 700;">NILAY BHATTACHARYA</h1>
+            <div
+              style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; font-size: 16px; color: var(--text-main);">
+              <span>nilaybhattacharya388@gmail.com</span>
+              <span>•</span>
+              <span>+91 8327062080</span>
+              <span>•</span>
+              <span>GitHub: nilaybhat</span>
+              <span>•</span>
+              <span>LinkedIn: nilay-bhattacharya-163b15349</span>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div>
+            <h3
+              style="font-size: 20px; font-weight: 600; color: #0a84ff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;">
+              Education</h3>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <div>
+                  <div style="font-weight: 600; font-size: 18px;">Brainware University</div>
+                  <div style="font-size: 16px; color: var(--text-main);">Bachelor of Computer Application (Honours)
+                    (SGPA: 8.25)</div>
+                </div>
+                <div style="font-size: 15px; color: var(--text-muted); text-align: right;">2024 - 2027</div>
+              </div>
+              <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <div>
+                  <div style="font-weight: 600; font-size: 18px;">H.K.S.G.C.M High School</div>
+                  <div style="font-size: 16px; color: var(--text-main);">XII (WBCHSE), Science (70%)</div>
+                </div>
+                <div style="font-size: 15px; color: var(--text-muted); text-align: right;">Purulia<br>2024</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Leadership & Achievements -->
+          <div>
+            <h3
+              style="font-size: 20px; font-weight: 600; color: #0a84ff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;">
+              Leadership & Achievements</h3>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 8px;">
+                  <div style="font-weight: 600; font-size: 18px;">IoT Team Leader</div>
+                  <div style="font-size: 15px; color: var(--text-muted);">Brainware University</div>
+                </div>
+                <ul
+                  style="margin: 0; padding-left: 20px; font-size: 16px; color: var(--text-main); line-height: 1.8; display: flex; flex-direction: column; gap: 8px;">
+                  <li>Managed a team developing IoT solutions, coordinating hardware-software integration and project
+                    execution.</li>
+                </ul>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 8px;">
+                  <div style="font-weight: 600; font-size: 18px;">Class Representative (CR)</div>
+                  <div style="font-size: 15px; color: var(--text-muted);">Brainware University</div>
+                </div>
+                <ul
+                  style="margin: 0; padding-left: 20px; font-size: 16px; color: var(--text-main); line-height: 1.8; display: flex; flex-direction: column; gap: 8px;">
+                  <li>Represented classmates, coordinated communication between students and faculty, and helped
+                    organize academic activities.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projects -->
+          <div>
+            <h3
+              style="font-size: 20px; font-weight: 600; color: #0a84ff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;">
+              Projects</h3>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div>
+                <div style="font-weight: 600; font-size: 18px; margin-bottom: 4px;">macOS Web Environment (This
+                  Portfolio!) <span
+                    style="font-size: 15px; font-weight: 400; color: var(--text-muted); float: right;">Present</span>
+                </div>
+                <p style="margin: 0; font-size: 16px; color: var(--text-main); line-height: 1.8;">Architected a fully
+                  functional, interactive macOS replica directly in the browser to serve as an engaging portfolio.
+                  Engineered a custom Multi-Window Manager using vanilla JS with background media rendering, dynamic
+                  Light/Dark glassmorphism themes, and Apple-authentic UI physics.</p>
+              </div>
+              <div>
+                <div style="font-weight: 600; font-size: 18px; margin-bottom: 4px;"><a
+                    href="https://bwu-web.vercel.app" target="_blank"
+                    style="color: inherit; text-decoration: none;">Brainware University Student Portal</a> <span
+                    style="font-size: 15px; font-weight: 400; color: var(--text-muted); float: right;">MERN Stack</span>
+                </div>
+                <p style="margin: 0; font-size: 16px; color: var(--text-main); line-height: 1.8;">Developed a university
+                  management portal with JWT and role-based access control (RBAC) for attendance tracking, grade
+                  management, and announcements. Built with MongoDB, Next.js, Tailwind CSS, GSAP, and Express.js.</p>
+              </div>
+              <div>
+                <div style="font-weight: 600; font-size: 18px; margin-bottom: 4px;"><a
+                    href="https://github.com/nilaybhat/urlshortner" target="_blank"
+                    style="color: inherit; text-decoration: none;">Tapwire - URL Shortener</a> <span
+                    style="font-size: 15px; font-weight: 400; color: var(--text-muted); float: right;">Production
+                    Ready</span>
+                </div>
+                <p style="margin: 0; font-size: 16px; color: var(--text-main); line-height: 1.8;">Built a
+                  production-ready URL shortening platform with REST APIs, secure link generation, click tracking, link
+                  expiration, rate limiting, SSRF protection, and caching. Used Next.js, React, TypeScript, Tailwind
+                  CSS, PostgreSQL, and SQLite.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="page-content" id="contact-page">
+        <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 30px;">Contact Me</h2>
+
+        <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+          <!-- Contact Info -->
+          <div style="flex: 1; min-width: 250px;">
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 20px; color: var(--text-main);">Get In Touch
+            </h3>
+
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div
+                style="display: flex; align-items: center; gap: 16px; background: var(--glass-bg); padding: 16px; border-radius: 16px;">
+                <div style="background: var(--glass-bg-light); padding: 12px; border-radius: 12px; display: flex;"><svg
+                    width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg></div>
+                <div style="min-width: 0;">
+                  <div
+                    style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                    Email</div>
+                  <div style="font-size: 14px; font-weight: 500; overflow-wrap: anywhere; word-break: break-word;">nilaybhattacharya388@gmail.com</div>
+                </div>
+              </div>
+
+              <div
+                style="display: flex; align-items: center; gap: 16px; background: var(--glass-bg); padding: 16px; border-radius: 16px;">
+                <div style="background: var(--glass-bg-light); padding: 12px; border-radius: 12px; display: flex;"><svg
+                    width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                  </svg></div>
+                <div>
+                  <div
+                    style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                    Phone</div>
+                  <div style="font-size: 14px; font-weight: 500;">+91 83270 62080</div>
+                </div>
+              </div>
+
+              <div
+                style="display: flex; align-items: center; gap: 16px; background: var(--glass-bg); padding: 16px; border-radius: 16px;">
+                <div style="background: var(--glass-bg-light); padding: 12px; border-radius: 12px; display: flex;"><svg
+                    width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg></div>
+                <div>
+                  <div
+                    style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                    Birthday</div>
+                  <div style="font-size: 14px; font-weight: 500;">May 12, 2005</div>
+                </div>
+              </div>
+
+              <div
+                style="display: flex; align-items: center; gap: 16px; background: var(--glass-bg); padding: 16px; border-radius: 16px;">
+                <div style="background: var(--glass-bg-light); padding: 12px; border-radius: 12px; display: flex;"><svg
+                    width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg></div>
+                <div>
+                  <div
+                    style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+                    Location</div>
+                  <div style="font-size: 14px; font-weight: 500;">Kolkata, West Bengal, India</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div
+            style="flex: 1.5; min-width: 300px; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 30px; border-radius: 20px;">
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: var(--text-main);">Send me a
+              Message</h3>
+            <form style="display: flex; flex-direction: column; gap: 20px;"
+              onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+              <input type="text" placeholder="Your Name" required
+                style="width: 100%; box-sizing: border-box; padding: 14px 18px; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); color: var(--text-main); font-family: inherit; font-size: 14px; outline: none; transition: border-color 0.2s;">
+              <input type="email" placeholder="Your Email" required
+                style="width: 100%; box-sizing: border-box; padding: 14px 18px; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); color: var(--text-main); font-family: inherit; font-size: 14px; outline: none; transition: border-color 0.2s;">
+              <textarea placeholder="Your Message" rows="5" required
+                style="width: 100%; box-sizing: border-box; padding: 14px 18px; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); color: var(--text-main); font-family: inherit; font-size: 14px; outline: none; resize: none; transition: border-color 0.2s;"></textarea>
+              <button type="submit"
+                style="align-self: flex-start; padding: 14px 32px; border-radius: 12px; border: none; background: #0a84ff; color: var(--text-main); font-weight: 600; font-size: 15px; cursor: pointer; transition: background 0.2s;">Send
+                Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <svg class="wallpaper" viewBox="0 0 1920 1200" preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bgGrad" x1="15%" y1="0%" x2="85%" y2="100%">
+            <stop offset="0%" stop-color="#0a0c18" />
+            <stop offset="50%" stop-color="#070811" />
+            <stop offset="100%" stop-color="#04050a" />
+          </linearGradient>
+          <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="60%">
+            <stop offset="0%" stop-color="#7c5cff" stop-opacity="0.55" />
+            <stop offset="35%" stop-color="#9b4dde" stop-opacity="0.5" />
+            <stop offset="68%" stop-color="#d6418f" stop-opacity="0.42" />
+            <stop offset="100%" stop-color="#3a2bd0" stop-opacity="0.3" />
+          </linearGradient>
+          <radialGradient id="glowPurple" cx="80%" cy="8%" r="55%">
+            <stop offset="0%" stop-color="#8855ff" stop-opacity="0.35" />
+            <stop offset="100%" stop-color="#8855ff" stop-opacity="0" />
+          </radialGradient>
+          <radialGradient id="glowTeal" cx="10%" cy="100%" r="65%">
+            <stop offset="0%" stop-color="#15d6c4" stop-opacity="0.4" />
+            <stop offset="100%" stop-color="#15d6c4" stop-opacity="0" />
+          </radialGradient>
+          <filter id="blurRibbon" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+            <feGaussianBlur stdDeviation="46" />
+          </filter>
+          <filter id="blurWisp" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+            <feGaussianBlur stdDeviation="10" />
+          </filter>
+        </defs>
+
+        <rect width="1920" height="1200" fill="url(#bgGrad)" />
+        <rect width="1920" height="1200" fill="url(#glowPurple)" />
+        <rect width="1920" height="1200" fill="url(#glowTeal)" />
+
+        <path d="M-50,-50
+             C 120,30 180,140 320,170
+             C 480,205 520,120 680,180
+             C 850,245 820,360 980,430
+             C 1150,505 1250,430 1420,520
+             C 1600,615 1700,560 1970,650
+             L 1970,880
+             C 1700,790 1600,840 1420,750
+             C 1250,665 1150,740 980,665
+             C 820,595 850,480 680,415
+             C 520,355 480,440 320,405
+             C 180,375 120,265 -50,185 Z" fill="url(#ribbonGrad)" filter="url(#blurRibbon)" />
+
+        <g filter="url(#blurWisp)" opacity="0.4" stroke-linecap="round" fill="none">
+          <path d="M-50,860 C200,800 320,900 540,840 C720,795 800,860 1020,810" stroke="#9b7bff" stroke-width="3" />
+          <path d="M300,980 C520,930 640,1010 880,950 C1040,915 1120,960 1300,920" stroke="#15d6c4"
+            stroke-width="2.4" />
+          <path d="M-50,560 C160,520 260,600 460,560" stroke="#d6418f" stroke-width="2" />
+        </g>
+
+        <g fill="currentColor">
+          <circle cx="1222.1" cy="38.5" r="1.1" opacity="0.4" />
+          <circle cx="282.3" cy="95.8" r="1.9" opacity="0.79" />
+          <circle cx="183.4" cy="332.2" r="0.7" opacity="0.31" />
+          <circle cx="457.4" cy="465.5" r="1.6" opacity="0.37" />
+          <circle cx="1241.8" cy="423.3" r="0.9" opacity="0.52" />
+          <circle cx="543.0" cy="663.3" r="0.9" opacity="0.67" />
+          <circle cx="659.7" cy="135.1" r="1.1" opacity="0.31" />
+          <circle cx="734.3" cy="285.6" r="1.1" opacity="0.61" />
+          <circle cx="1537.4" cy="560.0" r="1.6" opacity="0.32" />
+          <circle cx="1753.9" cy="78.3" r="1.1" opacity="0.75" />
+          <circle cx="1182.8" cy="657.7" r="1.6" opacity="0.37" />
+          <circle cx="150.8" cy="509.3" r="1.1" opacity="0.84" />
+          <circle cx="1628.0" cy="661.2" r="1.3" opacity="0.42" />
+          <circle cx="1215.1" cy="290.0" r="1.1" opacity="0.46" />
+          <circle cx="1279.9" cy="539.3" r="1.9" opacity="0.64" />
+          <circle cx="1165.2" cy="146.6" r="1.9" opacity="0.4" />
+          <circle cx="889.0" cy="219.8" r="1.9" opacity="0.66" />
+          <circle cx="432.9" cy="260.0" r="0.7" opacity="0.39" />
+          <circle cx="80.3" cy="253.4" r="1.1" opacity="0.29" />
+          <circle cx="1736.7" cy="439.7" r="1.9" opacity="0.44" />
+          <circle cx="1252.2" cy="312.8" r="1.9" opacity="0.53" />
+          <circle cx="518.0" cy="202.5" r="1.6" opacity="0.57" />
+          <circle cx="1424.4" cy="337.0" r="1.6" opacity="0.49" />
+          <circle cx="432.3" cy="758.2" r="1.6" opacity="0.55" />
+          <circle cx="1440.9" cy="657.2" r="0.9" opacity="0.63" />
+          <circle cx="1509.1" cy="332.4" r="0.7" opacity="0.48" />
+          <circle cx="1140.3" cy="366.4" r="1.1" opacity="0.83" />
+          <circle cx="1638.3" cy="28.5" r="1.9" opacity="0.32" />
+          <circle cx="1683.4" cy="575.6" r="1.9" opacity="0.45" />
+          <circle cx="571.8" cy="137.0" r="0.7" opacity="0.82" />
+          <circle cx="1666.6" cy="214.9" r="1.6" opacity="0.71" />
+          <circle cx="974.4" cy="98.7" r="1.9" opacity="0.43" />
+          <circle cx="1221.2" cy="470.6" r="0.9" opacity="0.47" />
+          <circle cx="323.7" cy="725.6" r="1.6" opacity="0.8" />
+          <circle cx="1146.0" cy="381.6" r="0.7" opacity="0.81" />
+          <circle cx="1672.0" cy="635.4" r="1.1" opacity="0.39" />
+          <circle cx="472.8" cy="439.8" r="0.7" opacity="0.3" />
+          <circle cx="933.7" cy="71.2" r="1.6" opacity="0.71" />
+          <circle cx="261.4" cy="371.7" r="1.6" opacity="0.35" />
+          <circle cx="1012.0" cy="468.9" r="0.9" opacity="0.81" />
+          <circle cx="1439.9" cy="530.5" r="1.9" opacity="0.44" />
+          <circle cx="1890.9" cy="500.9" r="1.3" opacity="0.79" />
+          <circle cx="868.8" cy="203.5" r="0.7" opacity="0.45" />
+          <circle cx="1126.0" cy="190.3" r="0.9" opacity="0.25" />
+          <circle cx="1350.7" cy="63.6" r="0.7" opacity="0.79" />
+          <circle cx="1636.1" cy="72.4" r="0.9" opacity="0.42" />
+          <circle cx="932.6" cy="419.0" r="1.9" opacity="0.81" />
+          <circle cx="1093.6" cy="369.8" r="1.3" opacity="0.73" />
+          <circle cx="378.0" cy="91.7" r="1.3" opacity="0.46" />
+          <circle cx="792.9" cy="659.2" r="0.7" opacity="0.65" />
+          <circle cx="1870.2" cy="92.8" r="1.3" opacity="0.69" />
+          <circle cx="1525.1" cy="100.9" r="0.9" opacity="0.36" />
+          <circle cx="863.4" cy="332.2" r="1.1" opacity="0.53" />
+          <circle cx="1664.0" cy="75.8" r="1.6" opacity="0.31" />
+          <circle cx="1246.0" cy="420.0" r="0.7" opacity="0.83" />
+          <circle cx="1761.6" cy="648.0" r="0.9" opacity="0.49" />
+          <circle cx="925.0" cy="659.8" r="0.7" opacity="0.35" />
+          <circle cx="24.1" cy="308.9" r="1.3" opacity="0.42" />
+          <circle cx="1329.6" cy="560.6" r="1.6" opacity="0.65" />
+          <circle cx="934.9" cy="160.5" r="0.9" opacity="0.83" />
+        </g>
+      </svg>
+
+      <div class="menubar">
+        <div class="menubar-left">
+          <div class="menu-root" data-menu="apple">
+            <span class="menu-item apple-logo">
+              <svg viewBox="0 0 384 512" fill="currentColor">
+                <path
+                  d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
+              </svg>
+            </span>
+            <div class="menu-dropdown">
+              <div class="mi">About This Mac</div>
+              <div class="sep"></div>
+              <div class="mi">System Settings…</div>
+              <div class="mi">App Store…</div>
+              <div class="sep"></div>
+              <div class="mi disabled">Recent Items<span class="kbd">▸</span></div>
+              <div class="sep"></div>
+              <div class="mi">Force Quit…<span class="kbd">⌥⌘⎋</span></div>
+              <div class="sep"></div>
+              <div class="mi">Sleep</div>
+              <div class="mi">Restart…</div>
+              <div class="mi">Shut Down…</div>
+              <div class="sep"></div>
+              <div class="mi">Lock Screen<span class="kbd">⌃⌘Q</span></div>
+              <div class="mi">Log Out…<span class="kbd">⇧⌘Q</span></div>
+            </div>
+          </div>
+          <span class="menu-item bold" style="cursor: pointer;" onclick="showPage('home')">Portfolio</span>
+          <div class="menu-root">
+            <span class="menu-item" style="cursor: pointer;" onclick="showPage('resume')">Resume</span>
+          </div>
+          <div class="menu-root" data-menu="file">
+            <span class="menu-item" style="cursor: pointer;" onclick="showPage('about')">About</span>
+            <div class="menu-dropdown">
+              <div class="mi">New Finder Window<span class="kbd">⌘N</span></div>
+              <div class="mi">New Folder<span class="kbd">⇧⌘N</span></div>
+              <div class="mi">New Tab<span class="kbd">⌘T</span></div>
+              <div class="mi">Open<span class="kbd">⌘O</span></div>
+              <div class="sep"></div>
+              <div class="mi">Close Window<span class="kbd">⌘W</span></div>
+              <div class="mi">Get Info<span class="kbd">⌘I</span></div>
+              <div class="sep"></div>
+              <div class="mi">Duplicate<span class="kbd">⌘D</span></div>
+              <div class="mi">Make Alias<span class="kbd">⌘L</span></div>
+              <div class="sep"></div>
+              <div class="mi">Move to Trash<span class="kbd">⌘⌫</span></div>
+            </div>
+          </div>
+          <div class="menu-root" data-menu="edit">
+            <span class="menu-item" style="cursor: pointer;" onclick="showPage('projects')">Projects</span>
+            <div class="menu-dropdown">
+              <div class="mi">Undo<span class="kbd">⌘Z</span></div>
+              <div class="mi">Redo<span class="kbd">⇧⌘Z</span></div>
+              <div class="sep"></div>
+              <div class="mi">Cut<span class="kbd">⌘X</span></div>
+              <div class="mi">Copy<span class="kbd">⌘C</span></div>
+              <div class="mi">Paste<span class="kbd">⌘V</span></div>
+              <div class="sep"></div>
+              <div class="mi">Select All<span class="kbd">⌘A</span></div>
+              <div class="sep"></div>
+              <div class="mi disabled">Find<span class="kbd">▸</span></div>
+            </div>
+          </div>
+          <div class="menu-root" data-menu="go">
+            <span class="menu-item" style="cursor: pointer;" onclick="showPage('skills')">Skills</span>
+            <div class="menu-dropdown">
+              <div class="mi">Back<span class="kbd">⌘[</span></div>
+              <div class="mi">Forward<span class="kbd">⌘]</span></div>
+              <div class="mi">Enclosing Folder<span class="kbd">⌘↑</span></div>
+              <div class="sep"></div>
+              <div class="mi">Recents<span class="kbd">⇧⌘F</span></div>
+              <div class="mi">Documents<span class="kbd">⇧⌘O</span></div>
+              <div class="mi">Desktop<span class="kbd">⇧⌘D</span></div>
+              <div class="mi">Downloads<span class="kbd">⌥⌘L</span></div>
+              <div class="mi">Home<span class="kbd">⇧⌘H</span></div>
+              <div class="mi">Computer<span class="kbd">⇧⌘C</span></div>
+              <div class="sep"></div>
+              <div class="mi">iCloud Drive<span class="kbd">⇧⌘I</span></div>
+              <div class="mi">Applications<span class="kbd">⇧⌘A</span></div>
+              <div class="mi">Utilities<span class="kbd">⇧⌘U</span></div>
+              <div class="sep"></div>
+              <div class="mi">Connect to Server…<span class="kbd">⌘K</span></div>
+            </div>
+          </div>
+          <div class="menu-root" data-menu="window">
+            <span class="menu-item" style="cursor: pointer;" onclick="showPage('contact')">Contact</span>
+            <div class="menu-dropdown">
+              <div class="mi">Minimize<span class="kbd">⌘M</span></div>
+              <div class="mi">Zoom</div>
+              <div class="sep"></div>
+              <div class="mi">Cycle Through Windows<span class="kbd">⌘`</span></div>
+              <div class="sep"></div>
+              <div class="mi">Bring All to Front</div>
+            </div>
+          </div>
+          <div class="menu-root" data-menu="help">
+            <span class="menu-item">Help</span>
+            <div class="menu-dropdown">
+              <div class="mi">macOS Help</div>
+              <div class="sep"></div>
+              <div class="mi">What's New in macOS</div>
+            </div>
+          </div>
+        </div>
+        <div class="menubar-right">
+          <span class="status-icon battery">
+            <span class="batt-pct">100%</span>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none">
+              <rect x="0.75" y="0.75" width="20" height="10.5" rx="2.5" stroke="currentColor" stroke-width="1.1" />
+              <rect x="2.25" y="2.25" width="17" height="7.5" rx="1.4" fill="currentColor" />
+              <rect x="21.5" y="4" width="1.8" height="4" rx="0.9" fill="currentColor" />
+            </svg>
+          </span>
+          <span class="status-icon wifi">
+            <svg width="15" height="12" viewBox="0 0 16 12" fill="currentColor">
+              <path d="M8 10.4a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6z" />
+              <path
+                d="M8 5.4c1.65 0 3.15.62 4.3 1.64a.7.7 0 0 1 .04 1.02l-.78.8a.62.62 0 0 1-.86.02A4.9 4.9 0 0 0 8 7.5c-1.06 0-2.04.36-2.7.94a.62.62 0 0 1-.86-.02l-.78-.8a.7.7 0 0 1 .04-1.02A6.6 6.6 0 0 1 8 5.4z" />
+              <path
+                d="M8 1.9c2.55 0 4.86.95 6.6 2.53a.7.7 0 0 1 .04 1.02l-.74.76a.6.6 0 0 1-.83.03A8.1 8.1 0 0 0 8 4.3a8.1 8.1 0 0 0-5.07 1.94.6.6 0 0 1-.83-.03l-.74-.76a.7.7 0 0 1 .04-1.02A9.9 9.9 0 0 1 8 1.9z" />
+            </svg>
+          </span>
+          <span class="status-icon spotlight" id="spotlightBtn" title="Spotlight">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+              <circle cx="7" cy="7" r="5.4" stroke="currentColor" stroke-width="1.4" />
+              <line x1="11" y1="11" x2="15" y2="15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+          </span>
+          <span class="status-icon control-center" id="ccBtn" title="Control Centre">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <rect x="0.5" y="0.5" width="6.5" height="6.5" rx="1.6" fill="currentColor" />
+              <rect x="9" y="0.5" width="6.5" height="6.5" rx="1.6" stroke="currentColor" stroke-width="1.2" />
+              <rect x="0.5" y="9" width="6.5" height="6.5" rx="1.6" stroke="currentColor" stroke-width="1.2" />
+              <rect x="9" y="9" width="6.5" height="6.5" rx="1.6" fill="currentColor" />
+            </svg>
+          </span>
+          <span class="menu-clock" id="clock">Thu Jun 18 9:41 AM</span>
+        </div>
+      </div>
+
+      <!-- Control Centre -->
+      <div class="cc-panel" id="ccPanel">
+        <div class="cc-tile">
+          <div class="cc-row"><span class="cc-icon on" id="wifiIcon"><svg viewBox="0 0 16 12" fill="currentColor">
+                <path d="M8 10.4a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6z" />
+                <path
+                  d="M8 5.4c1.65 0 3.15.62 4.3 1.64a.7.7 0 0 1 .04 1.02l-.78.8a.62.62 0 0 1-.86.02A4.9 4.9 0 0 0 8 7.5c-1.06 0-2.04.36-2.7.94a.62.62 0 0 1-.86-.02l-.78-.8a.7.7 0 0 1 .04-1.02A6.6 6.6 0 0 1 8 5.4z" />
+                <path
+                  d="M8 1.9c2.55 0 4.86.95 6.6 2.53a.7.7 0 0 1 .04 1.02l-.74.76a.6.6 0 0 1-.83.03A8.1 8.1 0 0 0 8 4.3a8.1 8.1 0 0 0-5.07 1.94.6.6 0 0 1-.83-.03l-.74-.76a.7.7 0 0 1 .04-1.02A9.9 9.9 0 0 1 8 1.9z" />
+              </svg></span><span>Wi-Fi</span></div>
+        </div>
+        <div class="cc-tile">
+          <div class="cc-row"><span class="cc-icon on" id="btIcon"><svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M6 8l12 8-6 5V3l6 5-12 8" />
+              </svg></span><span>Bluetooth</span></div>
+        </div>
+        <div class="cc-tile wide">
+          <div class="cc-row"><span class="cc-icon" id="afIcon"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3 2 13h4v8h12v-8h4z" />
+              </svg></span><span>Airplane Mode</span></div>
+        </div>
+        <div class="cc-tile wide" style="grid-template-columns:1fr;">
+          <span>Display</span>
+          <div class="cc-slider"></div>
+        </div>
+        <div class="cc-tile wide" style="grid-template-columns:1fr;">
+          <span>Sound</span>
+          <div class="cc-slider"
+            style="background:linear-gradient(90deg,rgba(255,255,255,0.85) 0%,rgba(255,255,255,0.85) 40%,rgba(255,255,255,0.16) 40%,rgba(255,255,255,0.16) 100%);">
+          </div>
+        </div>
+      </div>
+
+      <!-- Spotlight -->
+      <div class="overlay" id="spotlightOverlay">
+        <div class="overlay-dim" data-close="spotlight"></div>
+        <div class="spotlight-bar">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+            <circle cx="7" cy="7" r="5.4" />
+            <line x1="11" y1="11" x2="15" y2="15" stroke-linecap="round" />
+          </svg>
+          <input type="text" placeholder="Spotlight Search" id="spotlightInput" autocomplete="off">
+        </div>
+      </div>
+
+      <!-- Mobile Page Navigation (only shown while a page modal is open) -->
+      <div class="mobile-page-nav" id="mobilePageNav">
+        <button class="mp-nav-btn" data-page="home" onclick="showPage('home')">Home</button>
+        <button class="mp-nav-btn" data-page="about" onclick="showPage('about')">About</button>
+        <button class="mp-nav-btn" data-page="projects" onclick="showPage('projects')">Projects</button>
+        <button class="mp-nav-btn" data-page="skills" onclick="showPage('skills')">Skills</button>
+        <button class="mp-nav-btn" data-page="resume" onclick="showPage('resume')">Resume</button>
+        <button class="mp-nav-btn" data-page="contact" onclick="showPage('contact')">Contact</button>
+      </div>
+
+      <!-- Wallpaper Picker -->
+      <div class="wp-picker" id="wpPicker">
+        <div class="wp-picker-title">Choose Wallpaper</div>
+        <div class="wp-grid" id="wpGrid"></div>
+        <div class="wp-divider"></div>
+        <div class="wp-upload-row">
+          <label class="wp-upload-btn" style="flex: 1;">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8 2v9M4 6l4-4 4 4" />
+              <path d="M2 13h12" stroke-linecap="round" />
+            </svg>
+            Upload
+            <input type="file" accept="image/*" id="wpUpload">
+          </label>
+          <button id="themeToggleBtn" class="wp-upload-btn" style="flex: 1; background: rgba(255, 255, 255, 0.1);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            Theme
+          </button>
+          <button class="wp-close-btn" id="wpClose" style="flex: 1;">Done</button>
+        </div>
+      </div>
+
+      <div class="desktop-bottom-bar">
+        <!-- Links (Left of Dock) -->
+        <div class="links-left">
+          <a href="#" class="link-box" onclick="showPage('about'); return false;">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="link-text">About</span>
+          </a>
+          <a href="#" class="link-box" onclick="showPage('projects'); return false;">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span class="link-text">Projects</span>
+          </a>
+          <a href="#" class="link-box" onclick="showPage('resume'); return false;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span class="link-text">Resume</span>
+          </a>
+        </div>
+
+        <div class="dock-wrap">
+          <div class="dock" id="dock">
+
+            <div class="dock-icon" data-name="GitHub" onclick="window.open('https://github.com/nilaybhat', '_blank')">
+              <img src="assets/icons/github.png"
+                style="width:100%; height:100%; object-fit:contain; transform:scale(1.15); filter:drop-shadow(0 8px 16px rgba(0,0,0,0.4));">
+              <span class="dock-tooltip">GitHub</span>
+            </div>
+
+            <div class="dock-icon hide-on-mobile" data-name="Gmail"
+              onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=nilaybhattacharya388@gmail.com', '_blank')">
+              <img src="assets/icons/gmail.png"
+                style="width:100%; height:100%; object-fit:contain; transform:scale(1.15); filter:drop-shadow(0 8px 16px rgba(0,0,0,0.4));">
+              <span class="dock-tooltip">Gmail</span>
+            </div>
+
+            <div class="dock-icon" data-name="LinkedIn"
+              onclick="window.open('https://www.linkedin.com/in/nilay-bhattacharya-163b15349/', '_blank')">
+              <img src="assets/icons/linkedin.png"
+                style="width:100%; height:100%; object-fit:contain; transform:scale(1.15); filter:drop-shadow(0 8px 16px rgba(0,0,0,0.4));">
+              <span class="dock-tooltip">LinkedIn</span>
+            </div>
+
+            <div class="dock-icon" data-name="Apple Music" onclick="openApp('Apple Music', 'apple-music.html')">
+              <img src="assets/icons/vecteezy_apple-music-logo-square-rounded-apple-music-logo-apple_55138482.png"
+                style="width:100%; height:100%; object-fit:contain; transform:scale(1.15); filter:drop-shadow(0 8px 16px rgba(0,0,0,0.4));">
+              <span class="dock-tooltip">Apple Music</span>
+            </div>
+
+            <div class="dock-icon" id="wallpaperDockBtn" data-name="Wallpaper">
+              <div class="icon-tile"
+                 style="background:linear-gradient(160deg,#1a1a2e 0%,#16213e 40%,#0f3460 70%,#533483 100%);">
+                <svg viewBox="0 0 100 100" fill="none">
+                  <rect x="18" y="24" width="64" height="46" rx="5" fill="var(--text-muted)" stroke="var(--text-muted)"
+                    stroke-width="3" />
+                  <circle cx="34" cy="40" r="6" fill="#febc2e" />
+                  <path d="M18 56 L36 42 L52 54 L66 44 L82 56 L82 70 L18 70Z" fill="var(--text-muted)" />
+                  <path d="M52 54 L66 44 L82 56" stroke="var(--text-muted)" stroke-width="2" fill="none" />
+                </svg>
+              </div>
+              <span class="dock-tooltip">Wallpaper</span>
+              <span class="dock-dot"></span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Links (Right of Dock) -->
+        <div class="links-right">
+          <a href="#" class="link-box" onclick="showPage('skills'); return false;">
+            <svg viewBox="0 0 24 24">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span class="link-text">Skills</span>
+          </a>
+          <a href="#" class="link-box" onclick="showPage('contact'); return false;">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="link-text">Contact</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Windows will be dynamically injected here by the Window Manager -->
+
+    </div><!-- /.desktop -->
+  </div><!-- /.desktop-wrapper -->
+
+  <script>
+    // Mobile Chrome resizes the visible viewport as the address bar
+    // shows/hides, but 100vh stays pinned to the largest possible viewport.
+    // Track the real visible height in JS so the desktop/window-manager
+    // never renders taller than what's actually on screen.
+    (function () {
+      function setAppHeight() {
+        const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+        document.documentElement.style.setProperty('--app-height', vh + 'px');
+      }
+      setAppHeight();
+      window.addEventListener('resize', setAppHeight);
+      window.addEventListener('orientationchange', setAppHeight);
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', setAppHeight);
+        window.visualViewport.addEventListener('scroll', setAppHeight);
+      }
+    })();
+  </script>
+  <script src="assets/js/script.js"></script>
+</body>
+
+</html>

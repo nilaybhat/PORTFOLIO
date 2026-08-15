@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apple Music</title>
+  <style>
+    :root {
+      --bg: #1c1c1e;
+      --sidebar-bg: rgba(30, 30, 32, 0.7);
+      --text: #ffffff;
+      --text-muted: #8e8e93;
+      --accent: #fa243c;
+      --hover: rgba(255, 255, 255, 0.1);
+      --border: rgba(255, 255, 255, 0.08);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      height: 100dvh;
+      height: calc(var(--app-height, 100vh));
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Bottom Control Bar */
+    .bottom-bar {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--sidebar-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      padding: 0 40px;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      position: relative;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .player-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+
+    .player-right {
+      width: 250px;
+      flex-shrink: 0;
+    }
+
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    
+    .btn:hover {
+      background: var(--hover);
+    }
+
+    .btn.play-btn {
+      background: var(--text);
+      color: #000;
+      width: 54px;
+      height: 54px;
+    }
+    .btn.play-btn:hover {
+      transform: scale(1.05);
+      background: #fff;
+    }
+    .btn.play-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .now-playing {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 250px;
+      min-width: 0;
+      flex-shrink: 1;
+      overflow: hidden;
+    }
+
+    .np-title,
+    .np-artist {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .np-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .np-artist {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Main Area */
+    .main-area {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: var(--sidebar-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-right: 1px solid var(--border);
+      padding: 20px 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-section {
+      padding: 0 16px;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--text);
+      cursor: pointer;
+      margin-bottom: 2px;
+      transition: background 0.1s;
+    }
+
+    .nav-item:hover {
+      background: var(--hover);
+    }
+
+    .nav-item.active {
+      background: rgba(250, 36, 60, 0.15);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .nav-icon {
+      margin-right: 10px;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Content Area */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 30px 40px 24px;
+      background: #1c1c1e;
+    }
+
+    .header {
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      margin: 0 0 8px 0;
+      font-weight: 700;
+    }
+    
+    .header p {
+      color: var(--text-muted);
+      margin: 0;
+      font-size: 14px;
+    }
+
+    /* Track List */
+    .track-list {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 30px;
+    }
+
+    .track-row {
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      transition: background 0.2s;
+    }
+
+    .track-row:hover {
+      background: var(--hover);
+    }
+
+    .track-row.playing {
+      background: var(--hover);
+    }
+
+    .track-row.playing .track-num {
+      display: none;
+    }
+    
+    .track-row.playing .playing-icon {
+      display: flex;
+    }
+
+    .playing-icon {
+      display: none;
+      width: 20px;
+      height: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+    .playing-icon svg {
+      width: 12px;
+      height: 12px;
+      fill: var(--accent);
+    }
+
+    .track-num {
+      width: 30px;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-right: 12px;
+    }
+
+    .track-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .track-name {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .track-row.playing .track-name {
+      color: var(--accent);
+    }
+
+    .track-artist {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .track-album {
+      flex: 1;
+      font-size: 13px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+
+    .track-duration {
+      font-size: 13px;
+      color: var(--text-muted);
+      width: 50px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ============ RESPONSIVE ============ */
+
+    /* Medium windows: trim paddings, shrink sidebar a touch */
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 180px;
+      }
+      .content {
+        padding: 24px 28px;
+      }
+      .bottom-bar {
+        padding: 0 20px;
+      }
+      .now-playing,
+      .player-right {
+        width: 180px;
+      }
+    }
+
+    /* Small windows: collapse sidebar to icons only, drop the album column */
+    @media (max-width: 680px) {
+      .sidebar {
+        width: 60px;
+        padding: 16px 0;
+      }
+      .sidebar-title,
+      .nav-label {
+        display: none;
+      }
+      .nav-item {
+        justify-content: center;
+        padding: 10px 0;
+      }
+      .nav-icon {
+        margin-right: 0;
+      }
+      .content {
+        padding: 20px 18px;
+      }
+      .header h1 {
+        font-size: 24px;
+      }
+      .header p {
+        font-size: 13px;
+      }
+      .track-album {
+        display: none;
+      }
+      .player-right {
+        display: none;
+      }
+      .now-playing {
+        width: auto;
+        max-width: 140px;
+      }
+      .player-controls {
+        gap: 20px;
+      }
+    }
+
+    /* Very narrow windows / phones: hide sidebar entirely, tighten player bar */
+    @media (max-width: 480px) {
+      .sidebar {
+        display: none;
+      }
+      .content {
+        padding: 16px 14px;
+      }
+      .header h1 {
+        font-size: 20px;
+      }
+      .bottom-bar {
+        height: 84px;
+        padding: 0 12px;
+      }
+      .now-playing {
+        max-width: 90px;
+      }
+      .np-title {
+        font-size: 14px;
+      }
+      .np-artist {
+        font-size: 12px;
+      }
+      .player-controls {
+        gap: 14px;
+      }
+      .btn.play-btn {
+        width: 46px;
+        height: 46px;
+      }
+      .btn.play-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+      .track-row {
+        padding: 8px 8px;
+      }
+      .track-num {
+        width: 22px;
+        margin-right: 8px;
+      }
+    }
+
+    /* Extremely narrow (small popup-style windows) */
+    @media (max-width: 340px) {
+      .now-playing {
+        display: none;
+      }
+      .player-controls {
+        gap: 10px;
+      }
+    }
+  </style>
+  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+</head>
+<body>
+
+  <div class="main-area">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Apple Music</div>
+        <div class="nav-item"><div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><span class="nav-label"> Listen Now</span></div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Library</div>
+        <div class="nav-item"><div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><span class="nav-label"> Songs</span></div>
+        <div class="nav-item active"><div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="nav-label"> Playlists</span></div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="header">
+        <h1>Coding Focus</h1>
+        <p>Deep focus tracks to get you in the zone. Updated today.</p>
+      </div>
+
+      <div class="track-list" id="trackList">
+        <!-- JS will populate tracks here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Player Bar -->
+  <div class="bottom-bar">
+    <div class="now-playing">
+      <div class="np-title" id="npTitle">Apple Music</div>
+      <div class="np-artist" id="npArtist">Not Playing</div>
+    </div>
+
+    <div class="player-center">
+      <div class="player-controls">
+        <button class="btn" id="prevBtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+        <button class="btn play-btn" id="playBtn">
+          <!-- Play Icon by default -->
+          <svg id="playIcon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <!-- Pause Icon hidden initially -->
+          <svg id="pauseIcon" style="display:none;" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button class="btn" id="nextBtn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="player-right"></div>
+  </div>
+
+  <audio id="audioPlayer"></audio>
+
+  <script>
+    // Mobile browsers (esp. Chrome) resize the visible viewport as the
+    // address bar shows/hides, but 100vh/100dvh can lag or misreport this
+    // inside embedded contexts. Track the real visible height in JS instead.
+    function setAppHeight() {
+      const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+      document.documentElement.style.setProperty('--app-height', vh + 'px');
+    }
+    setAppHeight();
+    window.addEventListener('resize', setAppHeight);
+    window.addEventListener('orientationchange', setAppHeight);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', setAppHeight);
+      window.visualViewport.addEventListener('scroll', setAppHeight);
+    }
+  </script>
+  <script>
+    const tracks = [
+      {
+        id: 1,
+        title: "After Hours",
+        artist: "The Weeknd",
+        album: "After Hours",
+        duration: "--:--",
+        url: "assets/music/After Hours - Weeknd.mp3"
+      },
+      {
+        id: 2,
+        title: "Flashing Lights",
+        artist: "Kanye West",
+        album: "Graduation",
+        duration: "--:--",
+        url: "assets/music/Flashing Lights.mp3"
+      },
+      {
+        id: 3,
+        title: "RED",
+        artist: "Seedhe Maut",
+        album: "Nayaab",
+        duration: "--:--",
+        url: "assets/music/RED - Seedhe Maut.mp3"
+      },
+      {
+        id: 4,
+        title: "Runaway",
+        artist: "Kanye West",
+        album: "My Beautiful Dark Twisted Fantasy",
+        duration: "--:--",
+        url: "assets/music/Runaway - Kanye West.mp3"
+      },
+      {
+        id: 5,
+        title: "Sunflower",
+        artist: "Post Malone & Swae Lee",
+        album: "Spider-Man: Into the Spider-Verse",
+        duration: "--:--",
+        url: "assets/music/Sunflower.mp3"
+      },
+      {
+        id: 6,
+        title: "The Less I Know The Better",
+        artist: "Tame Impala",
+        album: "Currents",
+        duration: "--:--",
+        url: "assets/music/Tame Impala - The Less I Know The Better.mp3"
+      }
+    ];
+
+    let currentTrackIndex = -1;
+    let isPlaying = false;
+
+    const audio = document.getElementById('audioPlayer');
+    const trackListEl = document.getElementById('trackList');
+    const playBtn = document.getElementById('playBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    
+    const npTitle = document.getElementById('npTitle');
+    const npArtist = document.getElementById('npArtist');
+
+    // Render track list
+    function renderTracks() {
+      trackListEl.innerHTML = '';
+      tracks.forEach((track, index) => {
+        const row = document.createElement('div');
+        row.className = `track-row ${currentTrackIndex === index ? 'playing' : ''}`;
+        row.onclick = () => playTrack(index);
+
+        row.innerHTML = `
+          <div class="track-num">${index + 1}</div>
+          <div class="playing-icon">
+            <svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </div>
+          <div class="track-info">
+            <div class="track-name">${track.title}</div>
+            <div class="track-artist">${track.artist}</div>
+          </div>
+          <div class="track-album">${track.album}</div>
+          <div class="track-duration">${track.duration}</div>
+        `;
+        trackListEl.appendChild(row);
+      });
+    }
+
+    function playTrack(index) {
+      if (currentTrackIndex === index) {
+        togglePlay();
+        return;
+      }
+      currentTrackIndex = index;
+      const track = tracks[index];
+      
+      audio.src = track.url;
+      audio.play();
+      isPlaying = true;
+      
+      updatePlayerUI();
+      renderTracks();
+    }
+
+    function togglePlay() {
+      if (currentTrackIndex === -1) {
+        playTrack(0);
+        return;
+      }
+      
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+      isPlaying = !isPlaying;
+      updatePlayerUI();
+    }
+
+    function playNext() {
+      if (currentTrackIndex === -1) return;
+      let nextIdx = (currentTrackIndex + 1) % tracks.length;
+      playTrack(nextIdx);
+    }
+
+    function playPrev() {
+      if (currentTrackIndex === -1) return;
+      let prevIdx = currentTrackIndex - 1;
+      if (prevIdx < 0) prevIdx = tracks.length - 1;
+      playTrack(prevIdx);
+    }
+
+    function updatePlayerUI() {
+      if (isPlaying) {
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+      } else {
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+      }
+
+      if (currentTrackIndex !== -1) {
+        npTitle.textContent = tracks[currentTrackIndex].title;
+        npArtist.textContent = tracks[currentTrackIndex].artist;
+      }
+    }
+
+    // Update duration dynamically when loaded
+    audio.addEventListener('loadedmetadata', () => {
+      const durationSecs = audio.duration;
+      if (!isNaN(durationSecs) && currentTrackIndex !== -1) {
+        const mins = Math.floor(durationSecs / 60);
+        const secs = Math.floor(durationSecs % 60);
+        tracks[currentTrackIndex].duration = mins + ':' + (secs < 10 ? '0' : '') + secs;
+        renderTracks();
+      }
+    });
+
+    // Auto play next track when current ends
+    audio.addEventListener('ended', playNext);
+
+    playBtn.onclick = togglePlay;
+    nextBtn.onclick = playNext;
+    prevBtn.onclick = playPrev;
+
+    // Initialize
+    renderTracks();
+  </script>
+</body>
+</html>
